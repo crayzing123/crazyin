@@ -1,51 +1,26 @@
-#include<stdio.h>
+#include <stdio.h>
+
+int getSumOfDigits(int number){//각자리수 합
+    int sum = 0;
+    while (number > 0){
+        sum += number % 10;//1의 자리 더하기
+        number /= 10;// 1의 자리수는 날리고 자리수 앞당기기
+    }
+    return sum;
+}
 
 int main(){
+    int N;
+    scanf("%d", &N);
 
-  int i = 0;
-  int N;
-  scanf("%d", &N);
-
-  while(1){
-    if(i >= N){//모든 경우에 생성자가 없을 경우
-      i = 0;
-      printf("%d", i);
-      return 0;
+    int i;
+    for (i = 0; i <= N; i++){
+        if (N == i + getSumOfDigits(i)){
+            printf("%d", i);
+            return 0;
+        }
     }
-    
-    if(i < 10){//i이 한자리수
-      if(N == i+i){
-        printf("%d", i);
-        return 0;
-      }
-    }else if(i < 100){//i이 두자리수
-      if(N == i/10 + i%10 + i){
-        printf("%d", i);
-        return 0;
-      }
-    }else if(i < 1000){//i이 세자리
-      if(N == i + i/100 + (i%100)/10 + (i%10)){
-        printf("%d", i);
-        return 0;
-      }
-    }else if(i < 10000){//i이 네자리
-      if(N == i + i/1000 + (i%1000)/100 + (i%100)/10 + (i%10)){
-        printf("%d", i);
-        return 0;
-      }
-    }else if(i < 100000){//i이 다섯자리
-      if(N == i + i/10000 + (i%10000)/1000 + (i%1000)/100 + (i%100)/10 + (i%10)){
-        printf("%d", i);
-        return 0;
-      }
-    }else if(i < 1000000){//i이 여섯자리
-      if(N == i + i/100000 + (i%100000)/10000 + (i%10000)/1000 + (i%1000)/100 + (i%100)/10 + (i%10)){
-        printf("%d", i);
-        return 0;
-      }
-    }
-    i++;
-  }
 
-  return 0;
+    printf("0");
+    return 0;
 }
